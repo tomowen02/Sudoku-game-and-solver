@@ -7,23 +7,27 @@ board = [
 def print_board(board):
     print(f'''
 
-    {print_row(board[0][0])}
-    {print_row(board[0][1])}
     {print_row(board[0][2])}
+    {print_row(board[0][1])}
+    {print_row(board[0][0])}
     ------+-------+------
-    {print_row(board[0][0])}
-    {print_row(board[0][1])}
     {print_row(board[0][2])}
+    {print_row(board[0][1])}
+    {print_row(board[0][0])}
     ------+-------+------
-    {print_row(board[0][0])}
-    {print_row(board[0][1])}
     {print_row(board[0][2])}
+    {print_row(board[0][1])}
+    {print_row(board[0][0])}
 
     ''')
 
 def print_row(row):
     return (f"{row[0][0]} {row[0][1]} {row[0][2]} | {row[1][0]} {row[1][1]} {row[1][2]} | {row[2][0]} {row[2][1]} {row[2][2]}")
 
+def insert_item(board, x, y):
+    board[]
+
+    return board
 
 
 ### Debugging
