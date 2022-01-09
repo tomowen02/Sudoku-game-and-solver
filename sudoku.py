@@ -21,19 +21,12 @@ def print_board(board):
 
     ''')
 
-def print_section(cage):
-    row1 = cage[0]
-    row2 = cage[1]
-    row3 = cage[2]
-
-    print(f'''    {print_row(row1)}
-    {print_row(row2)}
-    {print_row(row3)}''')
-
 def print_row(row):
     return (f"{row[0][0]} {row[0][1]} {row[0][2]} | {row[1][0]} {row[1][1]} {row[1][2]} | {row[2][0]} {row[2][1]} {row[2][2]}")
 
 
+
+### Debugging
 x1 = [
     ['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']
 ]
