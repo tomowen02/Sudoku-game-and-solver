@@ -6,6 +6,7 @@ board = [
 
 def print_board(board):
     print(f'''
+
     {print_row(board[0][0])}
     {print_row(board[0][1])}
     {print_row(board[0][2])}
@@ -17,6 +18,7 @@ def print_board(board):
     {print_row(board[0][0])}
     {print_row(board[0][1])}
     {print_row(board[0][2])}
+
     ''')
 
 def print_section(cage):
@@ -33,15 +35,15 @@ def print_row(row):
 
 
 x1 = [
-    [[1], [2], [3]], [[4], [5], [6]], [[7], [8], [9]]
+    ['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']
 ]
 
 x2 = [
-    [[2], [2], [3]], [[4], [5], [6]], [[7], [8], [9]]
+    ['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']
 ]
 
 x3 = [
-    [[3], [2], [3]], [[4], [5], [6]], [[7], [8], [9]]
+    ['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']
 ]
 
 y1 = [x1, x2, x3]
@@ -50,6 +52,6 @@ y3 = [x1, x2, x3]
 
 z = [y1, y2, y3]
 
-#print_board(z)
+print_board(z)
 
-print(x1[0][0])
+#print(x1[0][0])
