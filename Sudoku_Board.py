@@ -12,20 +12,29 @@ class Sudoku_Board:
             [0,0,0,0,0,0,0,0,0] # Top row
         ]
     
+
+    ### Public methods ###
+
     def print_board(self):
         print(f'''
-        {self.__print_row(self.board[0])}
-        {self.__print_row(self.board[1])}
-        {self.__print_row(self.board[2])}
-        ------+-------+------
-        {self.__print_row(self.board[3])}
-        {self.__print_row(self.board[4])}
-        {self.__print_row(self.board[5])}
-        ------+-------+------
-        {self.__print_row(self.board[6])}
-        {self.__print_row(self.board[7])}
         {self.__print_row(self.board[8])}
+        {self.__print_row(self.board[7])}
+        {self.__print_row(self.board[6])}
+        ------+-------+------
+        {self.__print_row(self.board[5])}
+        {self.__print_row(self.board[4])}
+        {self.__print_row(self.board[3])}
+        ------+-------+------
+        {self.__print_row(self.board[2])}
+        {self.__print_row(self.board[1])}
+        {self.__print_row(self.board[0])}
         ''')
+
+    def insert_digit(self, x, y, value):
+        self.board[y][x] = value
+
+
+    ### Private methods ###
 
     def __print_row(self, row):
         output = ''
