@@ -33,6 +33,9 @@ class Sudoku_Board:
     def insert_digit(self, x, y, value):
         self.board[y][x] = value
 
+    def checked_insert_digit(self, x, y, value):
+        pass
+
 
     ### Private methods ###
 
