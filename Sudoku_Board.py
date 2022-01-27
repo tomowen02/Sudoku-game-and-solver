@@ -1,4 +1,5 @@
 class Sudoku_Board:
+    
     def __init__(self):
         self.board = [
             [0,0,0,0,0,0,0,0,0], # Bottom row
@@ -12,6 +13,7 @@ class Sudoku_Board:
             [0,0,0,0,0,0,0,0,0] # Top row
         ]
     
+
 
     ### Public methods ###
 
@@ -30,8 +32,10 @@ class Sudoku_Board:
         {self.__print_row(self.board[0])}
         ''')
 
+
     def insert_digit(self, x, y, value):
         self.board[y][x] = value
+
 
     def checked_insert_digit(self, x, y, value):
         #Check row
@@ -55,6 +59,7 @@ class Sudoku_Board:
         return True
 
 
+
     ### Private methods ###
 
     def __print_row(self, row):
@@ -70,6 +75,7 @@ class Sudoku_Board:
             output += self.__display_digit(row[i]) + ' '
 
         return output
+
 
     def __display_digit(self, digit):
         if digit == 0:
