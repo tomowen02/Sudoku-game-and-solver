@@ -60,6 +60,12 @@ class Sudoku_Board:
         return True
 
 
+    def is_complete(self):
+        for i in self.board:
+            if 0 in i:
+                return False
+        return True
+
 
     ### Private methods ###
 
