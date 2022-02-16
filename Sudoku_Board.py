@@ -89,3 +89,10 @@ class Sudoku_Board:
             return ' '
         else:
             return str(digit)
+
+    
+    def __next_unassigned(self):
+        for y in range(0, len(self.board)):
+            for x in range(0, len(self.board[y])):
+                if self.board[y][x] == 0:
+                    return x, y
