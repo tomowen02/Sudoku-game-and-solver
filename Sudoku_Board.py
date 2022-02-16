@@ -60,6 +60,20 @@ class Sudoku_Board:
         return True
 
 
+    def solve(self): # i think i need to set value to 0 before returning false
+        if self.is_complete():
+            return True
+        
+        x, y = self.__next_unassigned()
+        for i in range(1, 10):
+            if self.checked_insert_digit(x, y, i) == True:
+                if self.solve() == True:
+                    return True
+        self.insert_digit(x, y, 0)
+        return False
+
+
+
     def is_complete(self):
         for i in self.board:
             if 0 in i:
