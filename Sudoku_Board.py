@@ -56,6 +56,7 @@ class Sudoku_Board:
                 if self.board[i][j] == value:
                     return False
 
+        self.insert_digit(x, y, value)
         return True
 
 
