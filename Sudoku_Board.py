@@ -60,7 +60,7 @@ class Sudoku_Board:
         return True
 
 
-    def solve(self): # i think i need to set value to 0 before returning false
+    def solve(self):
         if self.is_complete():
             return True
         
