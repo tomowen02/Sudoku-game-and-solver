@@ -38,6 +38,10 @@ class Sudoku_Board:
 
 
     def checked_insert_digit(self, x, y, value):
+        if value == 0:
+            self.insert_digit(x, y, value)
+            return True
+
         #Check row
         for i in range(0,9):
             if value == self.board[y][i]:
