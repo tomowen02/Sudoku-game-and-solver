@@ -30,7 +30,7 @@ while True:
         game_mode = int(input('''
     Please chose a game mode:
     1) Assisted
-    2) Normal
+    2) Solver
 
     Your choice: '''))
 
