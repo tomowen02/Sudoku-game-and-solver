@@ -50,3 +50,11 @@ if game_mode == 1:
         board.print_board()
     
     print("Congratulations!!")
+if game_mode == 2:
+    if board.solve():
+        print("Solution: ")
+        board.print_board()
+    else:
+        print("This has not valid solutions :(")
+
+print()
