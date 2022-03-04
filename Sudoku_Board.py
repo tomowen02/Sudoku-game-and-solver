@@ -38,18 +38,31 @@ class Sudoku_Board:
 
 
     def checked_insert_digit(self, x, y, value):
+        if self.check(x, y, value):
+            self.insert_digit(x, y, value)
+            return True
+        else:
+            return False
+
+    
+    def check(self, x, y, value):
         if value == 0:
             self.insert_digit(x, y, value)
             return True
 
         #Check row
+        temp = self.board[y][x]
+        self.insert_digit(x, y, 0)
+
         for i in range(0,9):
             if value == self.board[y][i]:
+                self.insert_digit(x, y, temp)
                 return False
 
         # Check col
         for i in range(0,9):
             if value == self.board[i][x]:
+                self.insert_digit(x, y, temp)
                 return False
 
         # Check box
@@ -58,9 +71,10 @@ class Sudoku_Board:
         for i in range(box_y, box_y + 3): # Cycle through rows in box
             for j in range(box_x, box_x + 3): # Cycle through columns in box
                 if self.board[i][j] == value:
+                    self.insert_digit(x, y, temp)
                     return False
-
-        self.insert_digit(x, y, value)
+        
+        self.insert_digit(x, y, temp)
         return True
 
 
