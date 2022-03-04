@@ -1,4 +1,4 @@
-# soduku
+# Soduku
 
 This is a Sudoku game and solver.
 
