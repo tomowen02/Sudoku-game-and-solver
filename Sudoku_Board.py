@@ -91,11 +91,18 @@ class Sudoku_Board:
         return False
 
 
-
     def is_complete(self):
+        # Check if all spaces are filled
         for i in self.board:
             if 0 in i:
                 return False
+
+        # Check if every number that has already been inserted is valid
+        for i in range(0, 9):
+            for j in range(0, 9):
+                value = self.board[i][j]
+                if not self.check(j, i, value):
+                    return False
         return True
 
 
