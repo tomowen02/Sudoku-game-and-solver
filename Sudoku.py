@@ -24,6 +24,7 @@ def check_input(value, is_cord):
 
 board = Sudoku_Board()
 
+
 # Get game mode
 while True:
     try:
@@ -51,6 +52,8 @@ if game_mode == 1:
     
     print("Congratulations!!")
 if game_mode == 2:
+    input("Press enter to view the solution ")
+
     if board.solve() != 0:
         print("Solution: ")
         board.print_board()
