@@ -1,4 +1,5 @@
 from copy import deepcopy
+from random import randint
 
 
 class Sudoku_Board:
@@ -21,6 +22,8 @@ class Sudoku_Board:
         # 1: One solution found
         # 2: More than one solution found
         self.__multi_solutions = 0
+
+        self.new_board()
     
 
 
@@ -88,9 +91,10 @@ class Sudoku_Board:
 
 
     def solve(self):
+        self.__multi_solutions = 0
         self.__temp_board = deepcopy(self.board)
         self.__recur_solve()
-        self.board = deepcopy(self.board)
+        self.board = deepcopy(self.__temp_board)
 
         return self.__multi_solutions
         
@@ -109,6 +113,45 @@ class Sudoku_Board:
                 if not self.check(j, i, value):
                     return False
         return True
+
+
+    def new_board(self):
+        self.board = [[0 for x in range(9)] for y in range(9)]
+
+        seed_cells = [
+            [0,0], [3,1], [6,2], [1,3], [4,4], [7,5], [2,6], [5,7], [8,8] # [y,x]
+        ]
+
+        # Place random value into seed cells
+        for cell in seed_cells:
+            x = cell[1]
+            y = cell[0]
+            self.board[y][x] = randint(1,9)
+        print()
+
+        self.solve() # Fill the grid
+
+        missing = 0
+        while missing < 51:
+            x = randint(0,8)
+            y = randint(0,8)
+            temp = self.board[y][x]
+            self.insert_digit(x, y, 0)
+            temp_board = deepcopy(self.board)
+            if self.solve() == 1: #!TEMP this is replacing the cells!
+                self.board = deepcopy(temp_board)
+                missing += 1
+                continue
+            else:
+                self.board = deepcopy(temp_board)
+                self.insert_digit(x, y, temp)
+                continue
+        
+        print()
+
+
+            
+
 
 
     ### Private methods ###
