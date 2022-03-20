@@ -51,7 +51,7 @@ if game_mode == 1:
     
     print("Congratulations!!")
 if game_mode == 2:
-    if board.solve():
+    if board.solve() != 0:
         print("Solution: ")
         board.print_board()
     else:
