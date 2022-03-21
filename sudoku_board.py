@@ -206,3 +206,4 @@ class Sudoku_Board:
         
         self.insert_digit(x, y, 0)
         return False
+        
