@@ -183,8 +183,8 @@ class Sudoku_Board:
 
     
     def __next_unassigned(self):
-        for y in range(0, len(self.__board)):
-            for x in range(0, len(self.__board[y])):
+        for y in range(0, 9):
+            for x in range(0, 9):
                 if self.get_digit(x, y) == 0:
                     return x, y
 
