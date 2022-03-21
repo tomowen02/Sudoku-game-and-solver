@@ -44,10 +44,10 @@ class Sudoku_Board:
         {self.__print_row(self.__board[0])}
         ''')
 
-
+    
     def insert_digit(self, x, y, value):
         self.__board[y][x] = value
-
+    
 
     def checked_insert_digit(self, x, y, value):
         if self.check(x, y, value):
@@ -57,23 +57,27 @@ class Sudoku_Board:
             return False
 
     
+    def get_digit(self, x, y):
+        return self.__board[y][x]
+
+    
     def check(self, x, y, value):
         if value == 0:
             self.insert_digit(x, y, value)
             return True
 
         #Check row
-        temp = self.__board[y][x]
+        temp = self.get_digit(x, y)
         self.insert_digit(x, y, 0)
 
         for i in range(0,9):
-            if value == self.__board[y][i]:
+            if value == self.get_digit(i, y):
                 self.insert_digit(x, y, temp)
                 return False
 
         # Check col
         for i in range(0,9):
-            if value == self.__board[i][x]:
+            if value == self.get_digit(x, i):
                 self.insert_digit(x, y, temp)
                 return False
 
@@ -82,7 +86,7 @@ class Sudoku_Board:
         box_y = (y // 3) * 3
         for i in range(box_y, box_y + 3): # Cycle through rows in box
             for j in range(box_x, box_x + 3): # Cycle through columns in box
-                if self.__board[i][j] == value:
+                if self.get_digit(j, i) == value:
                     self.insert_digit(x, y, temp)
                     return False
         
@@ -109,7 +113,7 @@ class Sudoku_Board:
         # Check if every number that has already been inserted is valid
         for i in range(0, 9):
             for j in range(0, 9):
-                value = self.__board[i][j]
+                value = self.get_digit(j,i)
                 if not self.check(j, i, value):
                     return False
         return True
@@ -126,7 +130,7 @@ class Sudoku_Board:
         for cell in seed_cells:
             x = cell[1]
             y = cell[0]
-            self.__board[y][x] = randint(1,9)
+            self.insert_digit(x, y, randint(1,9))
         print()
 
         self.solve() # Fill the grid
@@ -135,7 +139,7 @@ class Sudoku_Board:
         while missing < 51:
             x = randint(0,8)
             y = randint(0,8)
-            temp = self.__board[y][x]
+            temp = self.get_digit(x, y)
             self.insert_digit(x, y, 0)
             temp_board = deepcopy(self.__board)
             if self.solve() == 1:
@@ -181,7 +185,7 @@ class Sudoku_Board:
     def __next_unassigned(self):
         for y in range(0, len(self.__board)):
             for x in range(0, len(self.__board[y])):
-                if self.__board[y][x] == 0:
+                if self.get_digit(x, y) == 0:
                     return x, y
 
 
