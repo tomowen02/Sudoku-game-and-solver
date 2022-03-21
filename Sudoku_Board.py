@@ -138,7 +138,7 @@ class Sudoku_Board:
             temp = self.board[y][x]
             self.insert_digit(x, y, 0)
             temp_board = deepcopy(self.board)
-            if self.solve() == 1: #!TEMP this is replacing the cells!
+            if self.solve() == 1:
                 self.board = deepcopy(temp_board)
                 missing += 1
                 continue
