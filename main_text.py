@@ -1,4 +1,4 @@
-from Sudoku_Board import Sudoku_Board
+from sudoku_board import Sudoku_Board
 
 
 def get_input():
