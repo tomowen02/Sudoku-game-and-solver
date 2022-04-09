@@ -44,6 +44,9 @@ class Sudoku_Board:
         {self.__print_row(self.__board[0])}
         ''')
 
+
+    def get_board(self):
+        return self.__board
     
     def insert_digit(self, x, y, value):
         self.__board[y][x] = value
