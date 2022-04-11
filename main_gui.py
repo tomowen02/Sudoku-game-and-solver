@@ -10,13 +10,13 @@ board = Sudoku_Board()
 
 # Canvas dimensions
 WIDTH = 594
-HEIGHT = 594
+HEIGHT = WIDTH
 
 # Colors
 C_RED = (255, 0, 0)
 C_BG = (20, 189, 172)
 C_GRID = (13, 161, 146)
-C_DIGIT = (84, 84, 84)
+C_DIGIT = (6, 84, 76)
 C_ACCENT = (14, 138, 125)
 
 # Fonts
@@ -45,7 +45,7 @@ def get_cords(pos):
 
 def draw_grid():
     # Draw grid lines
-    for i in range(1, 9):
+    for i in range(0, 10):
         if i % 3 == 0:
             thinkness = 3
         else:
@@ -57,12 +57,13 @@ def draw_grid():
     
     # Draw numbers
     grid = board.get_board()
-    x_font_offset = 22
+    x_font_offset = 23
     y_font_offset = 10
     for x in range(9):
         for y in range(9):
-            digit_text = font.render(str(grid[y][x]), 1, C_DIGIT)
-            canvas.blit(digit_text, (x * diff + x_font_offset, diff * 8 - y * diff + y_font_offset))
+            #digit_text = font.render(display_digit(grid[y][x]), 1, C_DIGIT) #!TEMP
+            digit_text = font.render(display_digit(board.get_digit(x, y)), 1, C_DIGIT)
+            canvas.blit(digit_text, (x * diff + x_font_offset, y * diff + y_font_offset))
 
 # Highlight selected box
 def draw_box():
