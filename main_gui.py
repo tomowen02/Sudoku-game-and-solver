@@ -43,6 +43,18 @@ def get_cords(pos):
     global selected_y
     selected_y = pos[1]//diff
 
+def display_digit(digit):
+    if digit == 0:
+            return ' '
+    else:
+        return str(digit)
+
+def update_screen():
+    canvas.fill(C_BG) # Clear the screen
+    draw_grid()
+    draw_box()
+
+
 def draw_grid():
     # Draw grid lines
     for i in range(0, 10):
@@ -73,6 +85,14 @@ def draw_box():
         # Vertical
         pygame.draw.line(canvas, C_ACCENT, (diff*(selected_x + i), selected_y * diff - 1), (diff*(selected_x + i), selected_y * diff + diff + 1), 3)
 
+def insert_digit(value):
+    board.checked_insert_digit(selected_x, selected_y, value)
+    update_screen()
+
+def new_board():
+    board.new_board()
+    update_screen()
+
 
 draw_grid()
 draw_box()
@@ -81,5 +101,33 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                board.solve()
+                update_screen()
+            if event.key == pygame.K_0:
+                insert_digit(0)
+            if event.key == pygame.K_1:
+                insert_digit(1)
+            if event.key == pygame.K_2:
+                insert_digit(2)
+            if event.key == pygame.K_3:
+                insert_digit(3)
+            if event.key == pygame.K_4:
+                insert_digit(4)
+            if event.key == pygame.K_5:
+                insert_digit(5)
+            if event.key == pygame.K_6:
+                insert_digit(6)
+            if event.key == pygame.K_7:
+                insert_digit(7)
+            if event.key == pygame.K_8:
+                insert_digit(8)
+            if event.key == pygame.K_9:
+                insert_digit(9)
+            if event.key == pygame.K_n:
+                new_board()
+            
+
     
     pygame.display.update()
