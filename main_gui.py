@@ -67,7 +67,6 @@ def draw_grid():
     y_font_offset = 10
     for x in range(9):
         for y in range(9):
-            #digit_text = font.render(display_digit(grid[y][x]), 1, C_DIGIT) #!TEMP
             digit_text = font.render(display_digit(board.get_digit(x, y)), 1, C_DIGIT)
             canvas.blit(digit_text, (x * diff + x_font_offset, y * diff + y_font_offset))
 
@@ -120,8 +119,7 @@ while True:
             select_cell(pos)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
-                board.solve()
-                update_screen()
+                solve()
             if event.key == pygame.K_n:
                 new_board()
             if event.key == pygame.K_0:
