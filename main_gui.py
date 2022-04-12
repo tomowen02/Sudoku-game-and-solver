@@ -10,7 +10,7 @@ board = Sudoku_Board()
 
 # Canvas dimensions
 WIDTH = 594
-HEIGHT = WIDTH
+HEIGHT = 675
 
 # Colors
 C_RED = (255, 0, 0)
@@ -94,9 +94,22 @@ def new_board():
     board.new_board()
     update_screen()
 
+def solve():
+    is_solvable = board.solve()
+    update_screen()
+    if is_solvable == 0:
+        write_to_screen("This cannot be solved :(")
 
-draw_grid()
-draw_box()
+def write_to_screen(message):
+    text = font.render(str(message), 1, C_DIGIT)
+    y_pos = HEIGHT - ((HEIGHT - WIDTH) / 2)
+    text_rect = text.get_rect(center=(WIDTH / 2, y_pos))
+    canvas.blit(text, text_rect)
+
+
+
+update_screen()
+write_to_screen("Welcome to sudoku!")
 
 while True:
     for event in pygame.event.get():
