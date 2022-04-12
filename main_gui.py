@@ -86,8 +86,10 @@ def select_cell(pos):
     update_screen()
 
 def insert_digit(value):
-    board.checked_insert_digit(selected_x, selected_y, value)
+    is_valid = board.checked_insert_digit(selected_x, selected_y, value)
     update_screen()
+    if not is_valid:
+        write_to_screen("You can't put that there!")
 
 def new_board():
     board.new_board()
