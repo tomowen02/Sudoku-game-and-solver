@@ -109,6 +109,8 @@ while True:
             if event.key == pygame.K_RETURN:
                 board.solve()
                 update_screen()
+            if event.key == pygame.K_n:
+                new_board()
             if event.key == pygame.K_0:
                 insert_digit(0)
             if event.key == pygame.K_1:
@@ -129,9 +131,5 @@ while True:
                 insert_digit(8)
             if event.key == pygame.K_9:
                 insert_digit(9)
-            if event.key == pygame.K_n:
-                new_board()
-            
-
     
     pygame.display.update()
