@@ -37,12 +37,6 @@ pygame.display.set_caption("Sudoku")
 canvas.fill(C_BG)
 
 
-def get_cords(pos):
-    global selected_x
-    selected_x = pos[0] // diff
-    global selected_y
-    selected_y = pos[1]//diff
-
 def display_digit(digit):
     if digit == 0:
             return ' '
@@ -85,6 +79,13 @@ def draw_box():
         # Vertical
         pygame.draw.line(canvas, C_ACCENT, (diff*(selected_x + i), selected_y * diff - 1), (diff*(selected_x + i), selected_y * diff + diff + 1), 3)
 
+def select_cell(pos):
+    global selected_x
+    selected_x = pos[0] // diff
+    global selected_y
+    selected_y = pos[1]//diff
+    update_screen()
+
 def insert_digit(value):
     board.checked_insert_digit(selected_x, selected_y, value)
     update_screen()
@@ -101,6 +102,9 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
+        if event.type == pygame.MOUSEBUTTONUP:
+            pos = pygame.mouse.get_pos()
+            select_cell(pos)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 board.solve()
