@@ -23,6 +23,21 @@ class Sudoku_Board:
         # 2: More than one solution found
         self.__multi_solutions = 0
 
+        # This will act as a placholder for the unsolved state of a board
+        # when a new board is created. This allows the resetting of the board
+        # to default values
+        self.__unsolved_state = [
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0]
+        ]
+
         self.new_board()
     
 
@@ -106,7 +121,6 @@ class Sudoku_Board:
         return self.__multi_solutions
         
 
-
     def is_complete(self):
         # Check if all spaces are filled
         for i in self.__board:
@@ -154,10 +168,12 @@ class Sudoku_Board:
                 self.insert_digit(x, y, temp)
                 continue
         
+        self.__unsolved_state = deepcopy(self.__board)
         print()
 
 
-            
+    def reset_board(self):
+        self.__board = deepcopy(self.__unsolved_state)
 
 
 

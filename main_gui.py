@@ -105,6 +105,11 @@ def new_board():
     update_screen()
 
 
+def reset_board():
+    board.reset_board()
+    update_screen()
+
+
 def solve():
     is_solvable = board.solve()
     update_screen()
@@ -142,6 +147,10 @@ while True:
                 solve()
             if event.key == pygame.K_n:
                 new_board()
+            if event.key == pygame.K_r:
+                reset_board()
+            if event.key == pygame.K_BACKSPACE:
+                insert_digit(0)
             if event.key == pygame.K_0:
                 insert_digit(0)
             if event.key == pygame.K_1:
