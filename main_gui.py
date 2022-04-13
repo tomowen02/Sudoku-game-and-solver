@@ -2,11 +2,15 @@ from sudoku_board import Sudoku_Board
 import pygame
 import sys
 
+
 # Initialise components
 pygame.init()
 pygame.font.init()
 board = Sudoku_Board()
 
+
+
+##### CONSTANTS #####
 
 # Canvas dimensions
 WIDTH = 594
@@ -20,7 +24,10 @@ C_DIGIT = (6, 84, 76)
 C_ACCENT = (14, 138, 125)
 
 # Fonts
-font = pygame.font.SysFont("Arial", 40)
+F_ARIAL = pygame.font.SysFont("Arial", 40)
+
+#####################
+
 
 
 # Variables
@@ -31,10 +38,6 @@ if WIDTH < HEIGHT:
 else:
     diff = HEIGHT // 9
 
-# Set up canvas
-canvas = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Sudoku")
-canvas.fill(C_BG)
 
 
 def display_digit(digit):
@@ -42,6 +45,7 @@ def display_digit(digit):
             return ' '
     else:
         return str(digit)
+
 
 def update_screen():
     canvas.fill(C_BG) # Clear the screen
@@ -67,8 +71,9 @@ def draw_grid():
     y_font_offset = 10
     for x in range(9):
         for y in range(9):
-            digit_text = font.render(display_digit(board.get_digit(x, y)), 1, C_DIGIT)
+            digit_text = F_ARIAL.render(display_digit(board.get_digit(x, y)), 1, C_DIGIT)
             canvas.blit(digit_text, (x * diff + x_font_offset, y * diff + y_font_offset))
+
 
 # Highlight selected box
 def draw_box():
@@ -78,6 +83,7 @@ def draw_box():
         # Vertical
         pygame.draw.line(canvas, C_ACCENT, (diff*(selected_x + i), selected_y * diff - 1), (diff*(selected_x + i), selected_y * diff + diff + 1), 3)
 
+
 def select_cell(pos):
     global selected_x
     selected_x = pos[0] // diff
@@ -85,29 +91,40 @@ def select_cell(pos):
     selected_y = pos[1]//diff
     update_screen()
 
+
 def insert_digit(value):
     is_valid = board.checked_insert_digit(selected_x, selected_y, value)
     update_screen()
+    
     if not is_valid:
         write_to_screen("You can't put that there!")
+
 
 def new_board():
     board.new_board()
     update_screen()
 
+
 def solve():
     is_solvable = board.solve()
     update_screen()
+    
     if is_solvable == 0:
         write_to_screen("This cannot be solved :(")
 
+
 def write_to_screen(message):
-    text = font.render(str(message), 1, C_DIGIT)
+    text = F_ARIAL.render(str(message), 1, C_DIGIT)
     y_pos = HEIGHT - ((HEIGHT - WIDTH) / 2)
     text_rect = text.get_rect(center=(WIDTH / 2, y_pos))
     canvas.blit(text, text_rect)
 
 
+
+# Set up canvas
+canvas = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Sudoku")
+canvas.fill(C_BG)
 
 update_screen()
 write_to_screen("Return: Solve   n: New board")
@@ -116,6 +133,7 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
+
         if event.type == pygame.MOUSEBUTTONUP:
             pos = pygame.mouse.get_pos()
             select_cell(pos)
