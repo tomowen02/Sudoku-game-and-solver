@@ -194,6 +194,7 @@ class Sudoku_Board:
 
     def __recur_solve(self):
         if self.is_complete():
+            self.__multi_solutions += 1
             return True
         
         x, y = self.__next_unassigned()
@@ -201,10 +202,8 @@ class Sudoku_Board:
             if self.checked_insert_digit(x, y, i) == True:
                 if self.__recur_solve() == True:
                     # We now know that a solution does exist. But we need to check if multiple exist
-                    if self.__multi_solutions > 0: # If there has already been a found solution
-                        self.__multi_solutions = 2 # Flag that there is more than one solution found
+                    if self.__multi_solutions == 2:
                         return True
-                    self.__multi_solutions += 1
                     self.__temp_board = deepcopy(self.__board) # Save the state of the correct solution
         
         self.insert_digit(x, y, 0)
