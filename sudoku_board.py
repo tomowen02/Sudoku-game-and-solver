@@ -17,11 +17,11 @@ class Sudoku_Board:
             [0,0,0,0,0,0,0,0,0] # Top row
         ]
 
-        # Multi solutions variable key:
+        # Solutions variable key:
         # 0: No solution found
         # 1: One solution found
         # 2: More than one solution found
-        self.__multi_solutions = 0
+        self.__solutions = 0
 
         self.new_board()
     
@@ -95,12 +95,12 @@ class Sudoku_Board:
 
 
     def solve(self):
-        self.__multi_solutions = 0
+        self.__solutions = 0
         self.__temp_board = deepcopy(self.__board)
         self.__recur_solve()
         self.__board = deepcopy(self.__temp_board)
 
-        return self.__multi_solutions
+        return self.__solutions
         
 
 
@@ -198,10 +198,10 @@ class Sudoku_Board:
             if self.checked_insert_digit(x, y, i) == True:
                 if self.__recur_solve() == True:
                     # We now know that a solution does exist. But we need to check if multiple exist
-                    if self.__multi_solutions > 0: # If there has already been a found solution
-                        self.__multi_solutions = 2 # Flag that there is more than one solution found
+                    if self.__solutions > 0: # If there has already been a found solution
+                        self.__solutions = 2 # Flag that there is more than one solution found
                         return True
-                    self.__multi_solutions += 1
+                    self.__solutions += 1
                     self.__temp_board = deepcopy(self.__board) # Save the state of the correct solution
         
         self.insert_digit(x, y, 0)
