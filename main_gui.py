@@ -10,7 +10,7 @@ board = Sudoku_Board()
 
 # Canvas dimensions
 WIDTH = 594
-HEIGHT = 675
+HEIGHT = 700
 
 # Colors
 C_RED = (255, 0, 0)
@@ -110,7 +110,7 @@ def write_to_screen(message):
 
 
 update_screen()
-write_to_screen("Welcome to sudoku!")
+write_to_screen("Return: Solve   n: New board")
 
 while True:
     for event in pygame.event.get():
