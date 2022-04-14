@@ -21,6 +21,7 @@ C_RED = (255, 0, 0)
 C_BG = (20, 189, 172)
 C_GRID = (13, 161, 146)
 C_DIGIT = (6, 84, 76)
+C_USR_DIGIT = (242, 235, 211)
 C_ACCENT = (14, 138, 125)
 
 # Fonts
@@ -71,7 +72,14 @@ def draw_grid():
     y_font_offset = 10
     for x in range(9):
         for y in range(9):
-            digit_text = F_ARIAL.render(display_digit(board.get_digit(x, y)), 1, C_DIGIT)
+
+            # Editable digits digits will be displayed as italic
+            color = C_DIGIT
+            if board.check_editable(x, y):
+                color = C_USR_DIGIT
+
+            digit = board.get_digit(x, y)
+            digit_text = F_ARIAL.render(display_digit(digit), 1, color)
             canvas.blit(digit_text, (x * diff + x_font_offset, y * diff + y_font_offset))
 
 
