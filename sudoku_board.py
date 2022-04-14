@@ -23,6 +23,21 @@ class Sudoku_Board:
         # 2: More than one solution found
         self.__solutions = 0
 
+        # This will act as a placholder for the unsolved state of a board
+        # when a new board is created. This allows the resetting of the board
+        # to default values
+        self.__unsolved_state = [
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0]
+        ]
+
         self.new_board()
     
 
@@ -44,6 +59,9 @@ class Sudoku_Board:
         {self.__print_row(self.__board[0])}
         ''')
 
+
+    def get_board(self):
+        return self.__board
     
     def insert_digit(self, x, y, value):
         self.__board[y][x] = value
@@ -103,7 +121,6 @@ class Sudoku_Board:
         return self.__solutions
         
 
-
     def is_complete(self):
         # Check if all spaces are filled
         for i in self.__board:
@@ -151,10 +168,19 @@ class Sudoku_Board:
                 self.insert_digit(x, y, temp)
                 continue
         
+        self.__unsolved_state = deepcopy(self.__board)
         print()
 
 
-            
+    def reset_board(self):
+        self.__board = deepcopy(self.__unsolved_state)
+    
+
+    def check_editable(self, x, y):
+        if  self.__unsolved_state[y][x] == 0:
+            return True
+        else:
+            return False
 
 
 
@@ -191,6 +217,7 @@ class Sudoku_Board:
 
     def __recur_solve(self):
         if self.is_complete():
+            self.__solutions += 1
             return True
         
         x, y = self.__next_unassigned()
@@ -198,10 +225,8 @@ class Sudoku_Board:
             if self.checked_insert_digit(x, y, i) == True:
                 if self.__recur_solve() == True:
                     # We now know that a solution does exist. But we need to check if multiple exist
-                    if self.__solutions > 0: # If there has already been a found solution
-                        self.__solutions = 2 # Flag that there is more than one solution found
+                    if self.__solutions == 2:
                         return True
-                    self.__solutions += 1
                     self.__temp_board = deepcopy(self.__board) # Save the state of the correct solution
         
         self.insert_digit(x, y, 0)
