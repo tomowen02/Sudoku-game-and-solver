@@ -174,6 +174,13 @@ class Sudoku_Board:
 
     def reset_board(self):
         self.__board = deepcopy(self.__unsolved_state)
+    
+
+    def check_editable(self, x, y):
+        if  self.__unsolved_state[y][x] == 0:
+            return True
+        else:
+            return False
 
 
 
