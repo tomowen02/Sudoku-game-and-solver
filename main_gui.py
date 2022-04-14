@@ -14,7 +14,7 @@ board = Sudoku_Board()
 
 # Canvas dimensions
 WIDTH = 594
-HEIGHT = 700
+HEIGHT = 675
 
 # Colors
 C_RED = (255, 0, 0)
