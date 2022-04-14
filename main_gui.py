@@ -26,6 +26,7 @@ C_ACCENT = (14, 138, 125)
 
 # Fonts
 F_ARIAL = pygame.font.SysFont("Arial", 40)
+F_ARIAL_SMALL = pygame.font.SysFont("Arial", 30)
 
 #####################
 
@@ -129,10 +130,15 @@ def solve():
 
 
 def write_to_screen(message):
-    text = F_ARIAL.render(str(message), 1, C_DIGIT)
+    text = F_ARIAL_SMALL.render(str(message), 1, C_DIGIT)
     y_pos = HEIGHT - ((HEIGHT - WIDTH) / 2)
     text_rect = text.get_rect(center=(WIDTH / 2, y_pos))
     canvas.blit(text, text_rect)
+
+
+def show_instructions():
+    update_screen()
+    write_to_screen("Return: Solve   n: New board   r: Reset")
 
 
 
@@ -142,7 +148,7 @@ pygame.display.set_caption("Sudoku")
 canvas.fill(C_BG)
 
 update_screen()
-write_to_screen("Return: Solve   n: New board")
+write_to_screen("Welcome! Press SPACE for instructions")
 
 while True:
     for event in pygame.event.get():
@@ -161,6 +167,8 @@ while True:
                 reset_board()
             if event.key == pygame.K_BACKSPACE:
                 insert_digit(0)
+            if event.key == pygame.K_SPACE:
+                show_instructions()
             if event.key == pygame.K_0:
                 insert_digit(0)
             if event.key == pygame.K_1:
