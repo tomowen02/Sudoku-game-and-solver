@@ -41,6 +41,7 @@ while True:
         print("Invalid input!")
 
 
+board.new_board(51)
 board.print_board()
 if game_mode == 1:
     while not board.is_complete():

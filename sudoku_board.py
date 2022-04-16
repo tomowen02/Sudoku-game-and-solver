@@ -37,8 +37,6 @@ class Sudoku_Board:
             [0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0]
         ]
-
-        self.new_board()
     
 
 
@@ -136,7 +134,7 @@ class Sudoku_Board:
         return True
 
 
-    def new_board(self):
+    def new_board(self, blank_values=51):
         self.__board = [[0 for x in range(9)] for y in range(9)]
 
         seed_cells = [
@@ -153,7 +151,7 @@ class Sudoku_Board:
         self.solve() # Fill the grid
 
         missing = 0
-        while missing < 51:
+        while missing < blank_values:
             x = randint(0,8)
             y = randint(0,8)
             temp = self.get_digit(x, y)

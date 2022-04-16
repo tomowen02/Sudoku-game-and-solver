@@ -28,6 +28,8 @@ C_ACCENT = (14, 138, 125)
 F_ARIAL = pygame.font.SysFont("Arial", 40)
 F_ARIAL_SMALL = pygame.font.SysFont("Arial", 30)
 
+MISSING_VALUES = 40
+
 #####################
 
 
@@ -112,7 +114,7 @@ def insert_digit(value):
 
 
 def new_board():
-    board.new_board()
+    board.new_board(blank_values = MISSING_VALUES)
     update_screen()
 
 
@@ -147,7 +149,7 @@ canvas = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Sudoku")
 canvas.fill(C_BG)
 
-update_screen()
+new_board()
 write_to_screen("Welcome! Press SPACE for instructions")
 
 while True:
