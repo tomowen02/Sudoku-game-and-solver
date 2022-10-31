@@ -37,6 +37,10 @@ class Sudoku_Board:
             [0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0]
         ]
+        
+        # This is experimental. It will contain every state of the board while
+        # being solved. This will help with the visualisation of the solve
+        self.__steps = []
     
 
 
@@ -112,11 +116,22 @@ class Sudoku_Board:
 
     def solve(self):
         self.__solutions = 0
+        self.__steps = [] #!TEMP
         self.__temp_board = deepcopy(self.__board)
         self.__recur_solve()
         self.__board = deepcopy(self.__temp_board)
 
         return self.__solutions
+    
+    
+    def vis_solve(self):
+        self.__solutions = 0
+        self.__steps = []
+        self.__temp_board = deepcopy(self.__board)
+        self.__vis_recur_solve()
+        self.__board = deepcopy(self.__temp_board)
+
+        return self.__solutions, self.__steps
         
 
     def is_complete(self):
@@ -179,7 +194,10 @@ class Sudoku_Board:
             return True
         else:
             return False
-
+        
+    
+    def set_board(self, board):
+        self.__board = board
 
 
     ### Private methods ###
@@ -222,6 +240,26 @@ class Sudoku_Board:
         for i in range(1, 10):
             if self.checked_insert_digit(x, y, i) == True:
                 if self.__recur_solve() == True:
+                    # We now know that a solution does exist. But we need to check if multiple exist
+                    if self.__solutions == 2:
+                        return True
+                    self.__temp_board = deepcopy(self.__board) # Save the state of the correct solution
+        
+        self.insert_digit(x, y, 0)
+        return False
+    
+    
+    def __vis_recur_solve(self):
+        if self.is_complete():
+            self.__solutions += 1
+            return True
+        
+        x, y = self.__next_unassigned()
+        for i in range(1, 10):
+            if self.checked_insert_digit(x, y, i) == True:
+                if self.__solutions == 0: #!TEMP
+                    self.__steps.append(deepcopy(self.__board))
+                if self.__vis_recur_solve() == True:
                     # We now know that a solution does exist. But we need to check if multiple exist
                     if self.__solutions == 2:
                         return True
