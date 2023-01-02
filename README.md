@@ -15,3 +15,6 @@ Possible future TODOs:
 - Add difficulties. This is easy to do as there is a constant for the number of missing values.
 - Add a lives system.
 - Add the ability to 'pencil in' a value
+
+
+[![HuixFB1.md.png](https://iili.io/HuixFB1.md.png)](https://freeimage.host/i/HuixFB1)
