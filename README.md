@@ -17,4 +17,4 @@ Possible future TODOs:
 - Add the ability to 'pencil in' a value
 
 
-[![HuixFB1.md.png](https://iili.io/HuixFB1.md.png)](https://freeimage.host/i/HuixFB1)
+[![HuyjXYx.md.gif](https://iili.io/HuyjXYx.md.gif)](https://freeimage.host/i/HuyjXYx)
