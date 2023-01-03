@@ -17,4 +17,4 @@ Possible future TODOs:
 - Add the ability to 'pencil in' a value
 
 
-[![HuyjXYx.md.gif](https://iili.io/HuyjXYx.md.gif)](https://freeimage.host/i/HuyjXYx)
+[Video demonstation of playing the game and using the auto solver visualisation](https://freeimage.host/i/HuyjXYx))
