@@ -1,3 +1,4 @@
+from time import sleep
 from sudoku_board import Sudoku_Board
 import pygame
 import sys
@@ -28,7 +29,7 @@ C_ACCENT = (14, 138, 125)
 F_ARIAL = pygame.font.SysFont("Arial", 40)
 F_ARIAL_SMALL = pygame.font.SysFont("Arial", 30)
 
-MISSING_VALUES = 40
+MISSING_VALUES = 60
 
 #####################
 
@@ -130,6 +131,16 @@ def solve():
     if is_solvable == 0:
         write_to_screen("This cannot be solved :(")
 
+def vis_solve():
+    is_solvable, steps = board.vis_solve()
+    for i in steps:
+        board.set_board(i)
+        sleep(0.075)
+        update_screen()
+        pygame.display.update()
+    
+    if is_solvable == 0:
+        write_to_screen("This cannot be solved :(")
 
 def write_to_screen(message):
     text = F_ARIAL_SMALL.render(str(message), 1, C_DIGIT)
@@ -162,7 +173,7 @@ while True:
             select_cell(pos)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
-                solve()
+                vis_solve()
             if event.key == pygame.K_n:
                 new_board()
             if event.key == pygame.K_r:
